@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLSM Subnet Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">::</span>
+      <span class="brand-name">IPv4</span>
+    </div>
+    <span class="brand-tag">VLSM Subnet Calculator</span>
+  </header>
+
+  <main class="wrap">
+
+    <div class="page-head">
+      <div class="page-head-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line class="net-line" x1="50" y1="50" x2="50" y2="15" />
+          <line class="net-line" x1="50" y1="50" x2="80" y2="70" />
+          <line class="net-line" x1="50" y1="50" x2="20" y2="70" />
+          <circle class="net-node net-node--core" cx="50" cy="50" r="9" />
+          <circle class="net-node" cx="50" cy="15" r="6" />
+          <circle class="net-node" cx="80" cy="70" r="6" />
+          <circle class="net-node" cx="20" cy="70" r="6" />
+        </svg>
+      </div>
+      <div class="page-head-text">
+        <h1>Split a network across departments</h1>
+        <p class="lede">Give the base network, list each department with how many users it needs, then calculate.</p>
+      </div>
+    </div>
+
+    <section class="base-card">
+      <label for="baseNetwork">Network ID(CIDR)</label>
+      <input id="baseNetwork" type="text" value="192.168.10.1/24" spellcheck="false" autocomplete="off">
+      <div id="baseError" class="errorBox" hidden></div>
+    </section>
+
+    <section class="dept-card">
+      <div class="dept-head">
+        <span class="dept-col-name">Department</span>
+        <span class="dept-col-users">Users needed</span>
+        <span class="dept-col-action"></span>
+      </div>
+      <div id="deptList" class="dept-list"></div>
+      <button id="addDeptBtn" class="add-btn" type="button">
+        <span class="plus">+</span> Add department
+      </button>
+    </section>
+
+    <button id="calcBtn" class="calc-btn" type="button">Calculate</button>
+
+    <div id="globalError" class="errorBox" hidden></div>
+
+    <section id="outputSection" class="output-section" hidden>
+      <div class="output-head">
+        <h2>Allocation</h2>
+        <button id="downloadBtn" class="download-btn" type="button">⬇ Download as Excel</button>
+      </div>
+      <div class="table-wrap">
+        <table id="outputTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Network</th>
+              <th>CIDR</th>
+              <th>Mask</th>
+              <th>Wildcard</th>
+              <th>Total</th>
+              <th>Usable</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Broadcast</th>
+              <th>Wasted</th>
+            </tr>
+          </thead>
+          <tbody id="outputBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span>Developed by.Aiman Thanks for Watching my Website.</span>
+  </footer>
+  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
